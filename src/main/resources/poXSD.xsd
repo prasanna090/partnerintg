@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:annotation>
+        <xsd:documentation xml:lang="en"> Purchase order schema for Good.com. This will be the XSD
+            used to generate Purchase Order XMLs. </xsd:documentation>
+    </xsd:annotation>
+    <xsd:element name="purchaseOrder" type="PurchaseOrderType"/>
+    <xsd:complexType name="PurchaseOrderType">
+        <xsd:sequence>
+            <xsd:element name="poHeader" type="poHeaderType" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="items" type="ItemsType" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="poHeaderType">
+        <xsd:annotation>
+            <xsd:documentation>Purchase Order Header Data</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="poDetails" type="poDetailsType" maxOccurs="1" minOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Purchase Order Header Details </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="SoldToCustomer" type="AddressDetailsType" maxOccurs="1" minOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>End Customer Details (Sold To) - This will be same as Ship To
+                        Customer if there is no reseller involved in the deal</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="BillToCustomer" type="AddressDetailsType" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Distributor to whom the purchase order should be
+                        billed.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="ShipToCustomer" type="AddressDetailsType">
+                <xsd:annotation>
+                    <xsd:documentation>Ship To Customer Information. If there is a reseller involved
+                        then the reseller information else it will be same as the sold to customer
+                        details.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="poDetailsType">
+        <xsd:sequence>
+            <xsd:element name="paymentTerms" type="xsd:string"/>
+            <xsd:element name="distributorId" type="xsd:string" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Distributor Id will be provided by Good.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="totalValue" type="xsd:double">
+                <xsd:annotation>
+                    <xsd:documentation>Total Value of the Purchase Order. Sum of all the product
+                        items total value.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="orderDate" type="xsd:date" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Date when the purchase order is
+                        submitted.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="poNumber" type="xsd:string" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Purchase Order Number</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="quoteNum" type="xsd:string" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Quote Number for which the purchase order is
+                        generated.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="oppId" type="xsd:string" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Opportunity Id on the Quote</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="endUserPO" type="xsd:string" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>End User purchase order number </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="currency" type="xsd:string" minOccurs="1" maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:documentation>Currency of Purchase Order</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="comment" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AddressDetailsType">
+        <xsd:sequence>
+            <xsd:element name="name" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="customerNumber" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="addressLine1" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="addressLine2" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="addressLine3" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="addressLine4" type="xsd:string"/>
+            <xsd:element name="city" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="state" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="zip" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="contactName" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="contactEmail" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="phone" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="country" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="comment" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ItemsType">
+        <xsd:sequence>
+            <xsd:element name="item" minOccurs="1" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="productName" type="xsd:string" minOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Manufacturer Product Number</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" name="serialNumber" type="xsd:string"/>
+                        <xsd:element name="distributorProductName" type="xsd:string" minOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Distributor Product Number</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                            <xsd:element name="productDescription" type="xsd:string" minOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Product Description</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="term" type="xsd:string" minOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Term (unit of measure for product) (ex:
+                                    Month/Year)</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="termValue" type="xsd:int" minOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Value of the term. </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="salesPrice" type="xsd:decimal">
+                            <xsd:annotation>
+                                <xsd:documentation>Price of the product after
+                                    discounts</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="quantity" type="xsd:positiveInteger" minOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Quantity of product ordered</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="listPrice" type="xsd:decimal" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>List Price of the Product</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="extendedPrice" type="xsd:decimal" minOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>Total Value of the product (quantity *
+                                    UnitPrice)</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="comment" type="xsd:string" minOccurs="0"/>
+                        <xsd:element name="reqDate" type="xsd:date" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>Requested Date of delivery</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" name="contractStartDate" type="xsd:date">
+                            <xsd:annotation>
+                                <xsd:documentation>Contract Start Date for the product item</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" name="contractEndDate" type="xsd:date">
+                            <xsd:annotation>
+                                <xsd:documentation>Contract End Date associated to product item</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" name="contractNumber" type="xsd:string">
+                            <xsd:annotation>
+                                <xsd:documentation>Contract Number associated with product item</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

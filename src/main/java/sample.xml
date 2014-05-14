@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<purchaseOrder>
+    <poHeader>
+        <poDetails>
+            <distributorId>TD-1001</distributorId>
+            <orderDate>2006-05-04</orderDate>
+            <poNumber>3504991424</poNumber>
+            <quoteNum>111186622</quoteNum>
+            <oppId>OPP_123</oppId>
+            <endUserPO>INS-PO060897</endUserPO>
+            <vatRegNumber>VAT-123</vatRegNumber>
+            <accountNumber>G0279</accountNumber>
+            <currency>GBP</currency>
+        </poDetails>
+        <endCustomer>
+            <name>Royal London Mutual Ins Society</name>
+            <street>Alderley Road</street>
+            <city>Wilmslow</city>
+            <zip>SK9 1PF</zip>
+            <contactName>John Carmen</contactName>
+            <contactEmail>john.carmen@rlam.co.uk</contactEmail>
+            <phone>442075066667</phone>
+            <country>GB</country>
+        </endCustomer>
+        <billTo>
+            <name>Tech Data</name>
+            <street>street address</street>
+            <city>city1</city>
+            <zip>zip1</zip>
+            <contactName>contactName1</contactName>
+            <contactEmail>contactEmail1</contactEmail>
+            <phone>phone1</phone>
+            <country>country1</country>
+        </billTo>
+    </poHeader>
+    <items>
+        <item>
+            <productName>GD.CAL.1APP.1Y</productName>
+            <distributorProductName>123456</distributorProductName>
+            <productDescription>GD single app per defice per yer</productDescription>
+            <term>month</term>
+            <termValue>12</termValue>
+            <quantity>50</quantity>
+            <unitPrice>2.5</unitPrice>
+            <totalValue>125</totalValue>
+            <reqDate>2006-05-04</reqDate>
+        </item>
+    </items>
+</purchaseOrder>

@@ -1,0 +1,48 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+    <!-- Database Configuration -->
+    <import resource="datasource.xml"/>
+    <import resource="Hibernate.xml"/>
+
+    <context:component-scan
+            base-package="partnerIntg" />
+    <bean id="purchaseOrderDetailsIface" class="partnerIntg.com.good.businessObjs.PurchaseOrderDetailsImpl" >
+        <property name="purchaseOrderDetailsDaoIface" ref="purchaseOrderDetailsDaoIface" />
+    </bean>
+
+    <bean id="purchaseOrderDetailsDaoIface" class="partnerIntg.com.good.dao.PurchaseOrderDetailsDaoImpl" >
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean id="purchaseOrderCustomerDetailsIface" class="partnerIntg.com.good.businessObjs.PurchaseOrderCustomerDetailsImpl" >
+        <property name="purchaseOrderCustomerDetailsDaoIface" ref="purchaseOrderCustomerDetailsDaoIface" />
+    </bean>
+
+    <bean id="purchaseOrderCustomerDetailsDaoIface" class="partnerIntg.com.good.dao.PurchaseOrderCustomerDetailsDaoImpl" >
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean id="purchaseOrderItemDetailsIface" class="partnerIntg.com.good.businessObjs.PurchaseOrderItemDetailsImpl" >
+        <property name="purchaseOrderItemDetailsDaoIface" ref="purchaseOrderItemDetailsDaoIface" />
+    </bean>
+
+    <bean id="purchaseOrderItemDetailsDaoIface" class="partnerIntg.com.good.dao.PurchaseOrderItemDetailsDaoImpl" >
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean id="errorAuditIface" class="partnerIntg.com.good.businessObjs.ErrorAuditImpl" >
+        <property name="errorAuditDaoIface" ref="errorAuditDaoIface" />
+    </bean>
+
+
+    <bean id="errorAuditDaoIface" class="partnerIntg.com.good.dao.ErrorAuditDaoImpl" >
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+</beans>
