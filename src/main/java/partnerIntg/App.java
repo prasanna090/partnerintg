@@ -29,20 +29,20 @@ import java.util.Set;
 import java.util.UUID;
 
 /**
- * Hello world!
+ * partnerIntg - Partner integration for Distribution purchase order processing.
  */
 public class App {
     private static final Logger log = (Logger) LoggerFactory.getLogger(App.class);
     private static Long uuid = UUID.randomUUID().getMostSignificantBits();
 
-    static class FileExt implements FilenameFilter {
-
-        public boolean accept(File dir, String name) {
-            return name.toLowerCase().endsWith("xml");
-        }
-
-    }
-
+    /**
+     * This function validates the xml with the xsd.
+     * @param xml source xml
+     * @param xsd XSD
+     * @param errorAuditIface error auditing interface
+     * @param name XML file name for tracking
+     * @return True if the XML is valid else false
+     */
     static boolean validateAgainstXSD(InputStream xml, InputStream xsd, ErrorAuditIface errorAuditIface, String name) {
         try {
             SchemaFactory factory =
@@ -71,6 +71,10 @@ public class App {
         }
     }
 
+    /**
+     * Main function
+     * @param args default argument
+     */
     public static void main(String[] args) {
         ApplicationContext appContext =
                 new ClassPathXmlApplicationContext("/BeansLocation.xml");
@@ -148,6 +152,17 @@ public class App {
             log.error("Exception in main function", e);
         }
 
+
+    }
+
+    /**
+     * Static class to define the file filter to pick only XML
+     */
+    static class FileExt implements FilenameFilter {
+
+        public boolean accept(File dir, String name) {
+            return name.toLowerCase().endsWith("xml");
+        }
 
     }
 }
