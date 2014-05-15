@@ -549,3 +549,10 @@ BEGIN
 END;
 
 /
+
+--5/14/2014 Added alter table scripts to accomodate TD NALA changes
+alter table po_details add  ISA_control_number varchar2(4000);
+alter table po_details add  receiver_id varchar2(4000);
+
+alter table po_details_history add  ISA_control_number varchar2(4000);
+alter table po_details_history add  receiver_id varchar2(4000);
