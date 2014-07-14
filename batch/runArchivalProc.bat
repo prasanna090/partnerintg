@@ -1,0 +1,1 @@
+sqlplus goodtech/goodtech@GOODINTG @c:\goodtech\batch\ARCHIVE_PO_DETAILS.sql

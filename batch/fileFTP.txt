@@ -1,0 +1,9 @@
+open ftp1.techdata-it-emea.com
+GoodTech
+Techdata@12
+cd /test_out
+lcd c:\GoodTech\test_working
+binary
+mget *.*
+disconnect
+bye
