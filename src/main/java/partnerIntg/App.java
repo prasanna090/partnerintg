@@ -88,7 +88,7 @@ public class App {
 
             JAXBContext context = JAXBContext.newInstance("partnerIntg.com.good.xmlprocess");
             Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
-          FileInputStream fileInputStream = new FileInputStream(new File("/Users/prasannarotti/sourceCode/IdeaProjects/partnerIntg/src/main/resources/xmlIntg.properties"));
+            FileInputStream fileInputStream = new FileInputStream(new File("C:\\GoodTech\\batch\\xmlIntg.properties"));
             //FileInputStream fileInputStream = new FileInputStream(new File("/Users/vianrotti/IdeaProjects/partnerIntg/src/main/resources/xmlIntg.properties"));
 
             property.load(fileInputStream);
@@ -134,7 +134,7 @@ public class App {
                     ErrorAudit errorAudit = new ErrorAudit();
                     errorAudit.setCreatedDate(new Date());
                     errorAudit.setMessage(e.getClass().getName() + ": " +e.getMessage());
-                     errorAudit.setFileName(file.getName() + ": " + 1100);
+                    errorAudit.setFileName(file.getName() + ": " + 1100);
                     errorAudit.setErrorId(1100);
                     errorAudit.setJobId(uuid);
                     errorAuditIface.save(errorAudit);

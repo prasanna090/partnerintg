@@ -313,7 +313,7 @@ END ARCHIVE_PO_DETAILS;
 --------------------------------------------------------
 set define off;
 
-  CREATE OR REPLACE PROCEDURE "GOODTECH"."VALIDATEXML"
+CREATE OR REPLACE PROCEDURE "GOODTECH"."VALIDATEXML"
 AS
 BEGIN
     DECLARE
